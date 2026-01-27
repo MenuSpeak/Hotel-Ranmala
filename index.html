@@ -1,0 +1,1599 @@
+
+<!DOCTYPE html>
+<html lang="en">   
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>हॉटेल रानमळा </title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">   
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --surface: #0f1114;
+      --muted: #9aa0a6;
+      --gold1: #d4af37;
+      --gold2: #ffcc66;
+      --accent: linear-gradient(90deg, var(--gold1), var(--gold2));
+      --glass: rgba(255, 255, 255, 0.03);
+      --card-radius: 16px;
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+      --glass-strong: rgba(255, 255, 255, 0.04);
+      --maxw: 1200px;
+      --gap: 20px;
+      --ff-heading: 'Playfair Display', serif;
+      --ff-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      --orange: #ff9800;
+      --green: #4CAF50;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-size: 16px;
+    }
+
+    body {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background image layer */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('bg.png') no-repeat center center/cover;
+      filter: grayscale(100%);
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    body {
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(212, 175, 55, 0.06), transparent 6%),
+                  radial-gradient(1000px 500px at 95% 90%, rgba(255, 204, 102, 0.04), transparent 8%),
+                  var(--bg);
+      color: #e8e6e3;
+      font-family: var(--ff-ui);
+      -webkit-font-smoothing: antialiased;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+    }
+
+    /* Cafe Header - Original Style */
+    .cafe-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px 0;
+    }
+
+    .cafe-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--gold1);
+      text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+      line-height: 1;
+      margin-bottom: 5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .cafe-name::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: var(--gold1);
+    }
+
+    .cafe-subtitle {
+      font-size: 1.2rem;
+      color: var(--orange);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    .location-info {
+      font-size: 1rem;
+      margin-top: 15px;
+      line-height: 1.6;
+    }
+
+    .location-text {
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .address {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .mobile-numbers {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 15px;
+    }
+
+    .veg-nonveg {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .veg, .nonveg {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .veg {
+      color: #2e7d32;
+      background: rgba(46, 125, 50, 0.1);
+    }
+
+    .nonveg {
+      color: #c62828;
+      background: rgba(198, 40, 40, 0.1);
+    }
+
+    .veg:hover, .nonveg:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .symbol {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .veg .symbol {
+      background: #4caf50;
+      border: 2px solid #2e7d32;
+    }
+
+    .nonveg .symbol {
+      background: #f44336;
+      border: 2px solid #c62828;
+    }
+
+    /* Location Link Section - Added at bottom */
+    .location-link-section {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(6px);
+      text-align: center;
+    }
+
+    .location-link-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .location-link-header h3 {
+      font-family: var(--ff-heading);
+      color: var(--gold2);
+      font-size: 1.3rem;
+      margin: 0;
+    }
+
+    .location-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--gold1);
+    }
+
+    .map-link-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      color: #0b0b0d;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .map-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    }
+
+    .map-link svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Header and Navigation */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-family: var(--ff-heading);
+      font-size: 20px;
+      letter-spacing: 0.6px;
+    }
+
+    .brand-text p {
+      margin: 2px 0 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .search-container {
+      background: var(--glass);
+      backdrop-filter: blur(6px);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .search-container input {
+      background: transparent;
+      border: 0;
+      outline: 0;
+      color: inherit;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    /* Tabs Navigation */
+    .tabs-container {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .tabs-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .tabs-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      font-size: 14px;
+      color: var(--muted);
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      color: #0b0b0d;
+      border: none;
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+    }
+
+    /* Menu Grid */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.01));
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: 0 8px 24px rgba(2, 6, 23, 0.6);
+      transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 0.28s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(2, 6, 23, 0.7);
+    }
+
+    .card-header {
+      display: flex;
+      gap: 12px;
+    }
+
+    .thumb {
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .card:hover .thumb img {
+      transform: scale(1.06);
+    }
+
+    .card-info {
+      flex: 1;
+    }
+
+    .dish {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      font-family: var(--ff-heading);
+      line-height: 1.3;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--gold2);
+      flex-shrink: 0;
+    }
+
+    .tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      font-size: 11px;
+      color: var(--muted);
+      background: transparent;
+    }
+
+    /* Add to Cart Button */
+    .btn-primary {
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: #0b0b0d;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+      font-size: 13px;
+      width: auto;
+      min-width: 100px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0) scale(0.95);
+    }
+
+    /* Button Animation Effects */
+    .btn-primary.adding {
+      animation: addPulse 0.6s ease;
+    }
+
+    .btn-primary.added {
+      background: linear-gradient(90deg, #10b981, #059669);
+      animation: successPulse 0.8s ease;
+    }
+
+    @keyframes addPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+      }
+    }
+
+    @keyframes successPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+      }
+      25% {
+        transform: scale(1.08);
+        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+      }
+      50% {
+        transform: scale(0.95);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+      }
+      75% {
+        transform: scale(1.03);
+        box-shadow: 0 7px 25px rgba(16, 185, 129, 0.35);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+      }
+    }
+
+    /* Cart Styles */
+    .cart-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+
+    .cart-button {
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+      cursor: pointer;
+      position: relative;
+      border: none;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #e74c3c;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 11, 13, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 16px;
+    }
+
+    .cart-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-content {
+      background: var(--surface);
+      width: 100%;
+      max-width: 500px;
+      border-radius: var(--card-radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      padding-bottom: 12px;
+    }
+
+    .cart-title {
+      font-family: var(--ff-heading);
+      font-size: 22px;
+      margin: 0;
+      color: var(--gold2);
+    }
+
+    .close-cart {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      font-size: 15px;
+    }
+
+    .item-price {
+      color: var(--gold2);
+      font-size: 14px;
+    }
+
+    .item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .quantity {
+      font-weight: 600;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .remove-item {
+      background: transparent;
+      border: none;
+      color: #e74c3c;
+      cursor: pointer;
+      margin-left: 12px;
+      font-size: 18px;
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px 0;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .total-amount {
+      color: var(--gold2);
+    }
+
+    .cart-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      border: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 16px;
+    }
+
+    .btn-clear {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Table Number Section */
+    .table-section {
+      margin: 20px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.015);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .table-title {
+      font-family: var(--ff-heading);
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--gold2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .table-title svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--gold2);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Customer Details Summary */
+    .customer-details-summary {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      display: none;
+    }
+
+    .customer-details-summary.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .summary-title {
+      font-weight: 600;
+      color: var(--gold2);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-title svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .summary-details {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .summary-details div {
+      margin-bottom: 5px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px 0;
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      margin-top: 20px;
+    }
+
+    /* Gold Line */
+    .gold-line {
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--gold1), var(--gold2));
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.08);
+      margin: 8px 0 16px 0;
+    }
+
+    /* Tablet and Desktop Styles */
+    @media (min-width: 768px) {
+      body {
+        padding: 24px;
+      }
+      
+      .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+      
+      .header {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .brand {
+        flex: 1;
+      }
+      
+      .search-container {
+        width: auto;
+        min-width: 300px;
+      }
+      
+      .tabs-container {
+        grid-column: 1 / -1;
+      }
+      
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .cart-actions {
+        flex-direction: row;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+      
+      .cart-container,
+      .cart-modal,
+      .btn-ghost {
+        display: none;
+      }
+    }
+
+
+    /* Tabs Navigation - Category Buttons */
+.tabs-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.tabs-scroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0;
+  justify-content: center;
+}
+
+.tab {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  margin: 2px;
+}
+
+.tab.active {
+  background: linear-gradient(90deg, var(--gold1), var(--gold2));
+  color: #0b0b0d;
+  border: none;
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+}
+
+/* Hover effect for better UX */
+.tab:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .tabs-scroll {
+    justify-content: flex-start;
+  }
+  
+  .tab {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .tab {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+  .tab {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  
+  .tabs-scroll {
+    justify-content: center;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .tab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .tabs-scroll {
+    gap: 5px;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Cafe Header - Original Style -->
+    <div class="cafe-header">
+      <img src="logo.jpg" alt="Logo" style="width:400px; height:auto;">
+      <div class="cafe-name">हॉटेल रानमळा</div>
+      <div class="cafe-subtitle">फॅमिली रेस्टोरंट </div>
+      <div class="location-info">
+        <div class="location-text"></div>
+        <div class="address"></div>
+        <div class="mobile-numbers">Mob. 9529924296 / 9307592355</div>
+      </div>
+      <div class="veg-nonveg">
+        <div class="veg">
+          <span class="symbol"></span>
+          <span>Veg</span>
+        </div>
+        <div class="nonveg">
+          <span class="symbol"></span>
+          <span>Non Veg</span>
+        </div>
+      </div> 
+    </div>
+
+    <!-- Main Menu -->
+    <main class="menu">
+      <div class="menu-head">
+        <div class="controls">
+          <div class="search" role="search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M21 21l-4.35-4.35" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              <circle cx="11" cy="11" r="6" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></circle>
+            </svg>
+            <input id="search" placeholder="Search dishes, ingredients..." />
+          </div>
+
+          <div class="tabs-scroll">
+<button class="tab active" data-cat="all">All</button>
+<button class="tab" data-cat="महाराष्ट्रीयन">महाराष्ट्रीयन</button>
+<button class="tab" data-cat="पंजाबी डीस">पंजाबी डीस</button>
+<button class="tab" data-cat="रानमळा स्पेशल">रानमळा स्पेशल</button>
+<button class="tab" data-cat="रोटी">रोटी</button>
+<button class="tab" data-cat="राईस">राईस</button>
+<button class="tab" data-cat="स्टार्टर">स्टार्टर</button>
+<button class="tab" data-cat="बिरयानी">बिरयानी</button>
+<button class="tab" data-cat="चिकन मेन्यु">चिकन मेन्यु</button>
+<button class="tab" data-cat="मटन मेन्यु">मटन मेन्यु</button>
+<button class="tab" data-cat="थाळी">थाळी</button>
+<button class="tab" data-cat="तंदुरी चिकन">तंदुरी चिकन</button>
+<button class="tab" data-cat="मच्छी">मच्छी</button>
+<button class="tab" data-cat="हंडी">हंडी</button>
+         </div>
+        </div>
+      </div>
+
+      <section class="menu-grid" id="menuGrid">
+        <!-- Cards injected by JS -->
+      </section>
+    </main>
+
+    <!-- Location Link Section - Added at bottom -->
+    <div class="location-link-section">
+      <div class="location-link-header">
+        <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <h3>Find Us on Google Maps</h3>
+      </div>
+      <div class="map-link-container">
+        <a href="https://share.google/63lJ2zQC3c96KHReB" target="_blank" class="map-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Button -->
+  <div class="cart-container">
+    <button class="cart-button" id="cartButton">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-content">
+      <div class="cart-header">
+        <h3 class="cart-title">Your Order</h3>
+        <button class="close-cart" id="closeCart">&times;</button>
+      </div>
+      
+      <!-- Table Number Section -->
+      <div class="table-section">
+        <h4 class="table-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 12v12M15 12v12M5 12l-2 9h18l-2-9M5 12V8c0-1.105.895-2 2-2h10c1.105 0 2 .895 2 2v4"/>
+            <circle cx="12" cy="6" r="2"/>
+          </svg>
+          Table Information
+        </h4>
+        
+        <div class="form-group">
+          <label class="form-label" for="tableNumber">Table Number *</label>
+          <input type="text" id="tableNumber" class="form-input" placeholder="Enter your table number (e.g., Table 5, Booth 2)" required />
+        </div>
+      </div>
+      
+      <!-- Customer Details Summary -->
+      <div class="customer-details-summary" id="customerDetailsSummary">
+        <!-- Will be populated by JavaScript -->
+      </div>
+      
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be inserted here -->
+        <div class="cart-empty" id="cartEmpty">Your cart is empty</div>
+      </div>
+      
+      <div class="cart-total">
+        <span>Total:</span>
+        <span class="total-amount" id="cartTotal">₹0</span>
+      </div>
+      
+      <div class="cart-actions">
+        <button class="btn-clear" id="clearCart">Clear Cart</button>
+        <button class="btn-whatsapp" id="whatsappOrder">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.864 3.488"/>
+          </svg>
+          Order via WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>   
+
+  <script>
+    // Menu Data   
+    const data =[
+
+
+{"id": 1, "cat": "महाराष्ट्रीयन", "name": "शेव भाजी - Shev Bhaji", "price": "RS 00", "desc": "Shev Bhaji", "tags": ["Veg"], "img": "img/shev_bhaji.jpeg"},
+{"id": 2, "cat": "महाराष्ट्रीयन", "name": "बैंगन मसाला - Baingan Masala", "price": "RS 00", "desc": "Baingan Masala", "tags": ["Veg"], "img": "img/baingan_masala.jpeg"},
+{"id": 3, "cat": "महाराष्ट्रीयन", "name": "मटकी मसाला - Matki Masala", "price": "RS 00", "desc": "Matki Masala", "tags": ["Veg"], "img": "img/matki_masala.jpeg"},
+{"id": 4, "cat": "महाराष्ट्रीयन", "name": "मिक्स व्हेज - Mix Veg", "price": "RS 00", "desc": "Mix Veg", "tags": ["Veg"], "img": "img/mix_veg.jpeg"},
+{"id": 5, "cat": "महाराष्ट्रीयन", "name": "व्हेज मराठा - Veg Maratha", "price": "RS 00", "desc": "Veg Maratha", "tags": ["Veg"], "img": "img/veg_maratha.jpeg"},
+{"id": 6, "cat": "महाराष्ट्रीयन", "name": "अक्का मसुर - Akka Masoor", "price": "RS 00", "desc": "Akka Masoor", "tags": ["Veg"], "img": "img/akka_masoor.jpeg"},
+{"id": 7, "cat": "महाराष्ट्रीयन", "name": "डाळ फ्राय - Dal Fry", "price": "RS 00", "desc": "Dal Fry", "tags": ["Veg"], "img": "img/dal_fry.jpeg"},
+{"id": 8, "cat": "महाराष्ट्रीयन", "name": "तवा बेसन - Tawa Besan", "price": "RS 00", "desc": "Tawa Besan", "tags": ["Veg"], "img": "img/tawa_besan.jpeg"},
+{"id": 9, "cat": "महाराष्ट्रीयन", "name": "डाळ तडका - Dal Tadka", "price": "RS 00", "desc": "Dal Tadka", "tags": ["Veg"], "img": "img/dal_tadka.jpeg"},
+{"id": 10, "cat": "महाराष्ट्रीयन", "name": "सोयाबीन मेथी - Soyabean Methi", "price": "RS 00", "desc": "Soyabean Methi", "tags": ["Veg"], "img": "img/soyabean_methi.jpeg"},
+{"id": 11, "cat": "महाराष्ट्रीयन", "name": "बैंगन मसाला ड्राय - Baingan Masala Dry", "price": "RS 00", "desc": "Baingan Masala Dry", "tags": ["Veg"], "img": "img/baingan_masala_dry.jpeg"},
+{"id": 12, "cat": "महाराष्ट्रीयन", "name": "शेवगा मसाला - Shevga Masala", "price": "RS 00", "desc": "Shevga Masala", "tags": ["Veg"], "img": "img/shevga_masala.jpeg"},
+{"id": 13, "cat": "महाराष्ट्रीयन", "name": "शेवगा मसाला ड्राय - Shevga Masala Dry", "price": "RS 00", "desc": "Shevga Masala Dry", "tags": ["Veg"], "img": "img/shevga_masala_dry.jpeg"},
+{"id": 14, "cat": "महाराष्ट्रीयन", "name": "मेथी मसाला - Methi Masala", "price": "RS 00", "desc": "Methi Masala", "tags": ["Veg"], "img": "img/methi_masala.jpeg"},
+{"id": 15, "cat": "महाराष्ट्रीयन", "name": "लसुनी मेथी - Lasuni Methi", "price": "RS 00", "desc": "Lasuni Methi", "tags": ["Veg"], "img": "img/lasuni_methi.jpeg"},
+{"id": 16, "cat": "महाराष्ट्रीयन", "name": "लसुनी मेथी ड्राय - Lasuni Methi Dry", "price": "RS 00", "desc": "Lasuni Methi Dry", "tags": ["Veg"], "img": "img/lasuni_methi_dry.jpeg"},
+{"id": 17, "cat": "महाराष्ट्रीयन", "name": "भेंडी मसाला - Bhendi Masala", "price": "RS 00", "desc": "Bhendi Masala", "tags": ["Veg"], "img": "img/bhendi_masala.jpeg"},
+{"id": 18, "cat": "महाराष्ट्रीयन", "name": "मेथी मटर ड्राय - Methi Matar Dry", "price": "RS 00", "desc": "Methi Matar Dry", "tags": ["Veg"], "img": "img/methi_matar_dry.jpeg"},
+{"id": 19, "cat": "महाराष्ट्रीयन", "name": "आलु पालक - Alu Palak", "price": "RS 00", "desc": "Alu Palak", "tags": ["Veg"], "img": "img/alu_palak.jpeg"},
+{"id": 20, "cat": "महाराष्ट्रीयन", "name": "आलु मटर - Alu Matar", "price": "RS 00", "desc": "Alu Matar", "tags": ["Veg"], "img": "img/alu_matar.jpeg"},
+{"id": 21, "cat": "महाराष्ट्रीयन", "name": "आलु जिरा - Alu Jeera", "price": "RS 00", "desc": "Alu Jeera", "tags": ["Veg"], "img": "img/alu_jeera.jpeg"},
+{"id": 22, "cat": "महाराष्ट्रीयन", "name": "चना मसाला - Chana Masala", "price": "RS 00", "desc": "Chana Masala", "tags": ["Veg"], "img": "img/chana_masala.jpeg"},
+{"id": 23, "cat": "महाराष्ट्रीयन", "name": "आलु मेथी मसाला - Alu Methi Masala", "price": "RS 00", "desc": "Alu Methi Masala", "tags": ["Veg"], "img": "img/alu_methi_masala.jpeg"},
+{"id": 24, "cat": "महाराष्ट्रीयन", "name": "गारलीक पालक - Garlic Palak", "price": "RS 00", "desc": "Garlic Palak", "tags": ["Veg"], "img": "img/garlic_palak.jpeg"},
+{"id": 25, "cat": "महाराष्ट्रीयन", "name": "ग्रीन पीस मसाला - Green Peas Masala", "price": "RS 00", "desc": "Green Peas Masala", "tags": ["Veg"], "img": "img/green_peas_masala.jpeg"},
+{"id": 26, "cat": "महाराष्ट्रीयन", "name": "सोयाबीन मसाला - Soyabean Masala", "price": "RS 00", "desc": "Soyabean Masala", "tags": ["Veg"], "img": "img/soyabean_masala.jpeg"},
+{"id": 27, "cat": "महाराष्ट्रीयन", "name": "सोयाबीन ड्राय - Soyabean Dry", "price": "RS 00", "desc": "Soyabean Dry", "tags": ["Veg"], "img": "img/soyabean_dry.jpeg"},
+{"id": 28, "cat": "पंजाबी डीस", "name": "पनीर कस्तुरी - Paneer Kasturi", "price": "RS 00", "desc": "Paneer Kasturi", "tags": ["Veg"], "img": "img/paneer_kasturi.jpeg"},
+{"id": 29, "cat": "पंजाबी डीस", "name": "पनीर बटर मसाला - Paneer Butter Masala", "price": "RS 00", "desc": "Paneer Butter Masala", "tags": ["Veg"], "img": "img/paneer_butter_masala.jpeg"},
+{"id": 30, "cat": "पंजाबी डीस", "name": "पनीर टिका लबाबदार - Paneer Tikka Lababdar", "price": "RS 00", "desc": "Paneer Tikka Lababdar", "tags": ["Veg"], "img": "img/paneer_tikka_lababdar.jpeg"},
+{"id": 31, "cat": "पंजाबी डीस", "name": "पनीर भुर्जी - Paneer Bhurji", "price": "RS 00", "desc": "Paneer Bhurji", "tags": ["Veg"], "img": "img/paneer_bhurji.jpeg"},
+{"id": 32, "cat": "पंजाबी डीस", "name": "पनीर काजु मसाला - Paneer Kaju Masala", "price": "RS 00", "desc": "Paneer Kaju Masala", "tags": ["Veg"], "img": "img/paneer_kaju_masala.jpeg"},
+{"id": 33, "cat": "पंजाबी डीस", "name": "पनीर पंसदा - Paneer Pasanda", "price": "RS 00", "desc": "Paneer Pasanda", "tags": ["Veg"], "img": "img/paneer_pasanda.jpeg"},
+{"id": 34, "cat": "पंजाबी डीस", "name": "पनीर पटीयाला - Paneer Patiala", "price": "RS 00", "desc": "Paneer Patiala", "tags": ["Veg"], "img": "img/paneer_patiala.jpeg"},
+{"id": 35, "cat": "पंजाबी डीस", "name": "पनीर लबाबदार - Paneer Lababdar", "price": "RS 00", "desc": "Paneer Lababdar", "tags": ["Veg"], "img": "img/paneer_lababdar.jpeg"},
+{"id": 36, "cat": "पंजाबी डीस", "name": "पनीर टिका मसाला - Paneer Tikka Masala", "price": "RS 00", "desc": "Paneer Tikka Masala", "tags": ["Veg"], "img": "img/paneer_tikka_masala.jpeg"},
+{"id": 37, "cat": "पंजाबी डीस", "name": "मटर पनीर - Matar Paneer", "price": "RS 00", "desc": "Matar Paneer", "tags": ["Veg"], "img": "img/matar_paneer.jpeg"},
+{"id": 38, "cat": "पंजाबी डीस", "name": "कढई पनीर - Kadai Paneer", "price": "RS 00", "desc": "Kadai Paneer", "tags": ["Veg"], "img": "img/kadai_paneer.jpeg"},
+{"id": 39, "cat": "पंजाबी डीस", "name": "पनीर कोल्हापुरी - Paneer Kolhapuri", "price": "RS 00", "desc": "Paneer Kolhapuri", "tags": ["Veg"], "img": "img/paneer_kolhapuri.jpeg"},
+{"id": 40, "cat": "पंजाबी डीस", "name": "काजु करी - Kaju Curry", "price": "RS 00", "desc": "Kaju Curry", "tags": ["Veg"], "img": "img/kaju_curry.jpeg"},
+{"id": 41, "cat": "पंजाबी डीस", "name": "काजु बटर मसाला - Kaju Butter Masala", "price": "RS 00", "desc": "Kaju Butter Masala", "tags": ["Veg"], "img": "img/kaju_butter_masala.jpeg"},
+{"id": 42, "cat": "पंजाबी डीस", "name": "काजु पनीर मसाला - Kaju Paneer Masala", "price": "RS 00", "desc": "Kaju Paneer Masala", "tags": ["Veg"], "img": "img/kaju_paneer_masala.jpeg"},
+{"id": 43, "cat": "पंजाबी डीस", "name": "पनीर भुर्जी ग्रेव्ही - Paneer Bhurji Gravy", "price": "RS 00", "desc": "Paneer Bhurji Gravy", "tags": ["Veg"], "img": "img/paneer_bhurji_gravy.jpeg"},
+{"id": 44, "cat": "पंजाबी डीस", "name": "काजु मशरुम मसाला - Kaju Mushroom Masala", "price": "RS 00", "desc": "Kaju Mushroom Masala", "tags": ["Veg"], "img": "img/kaju_mushroom_masala.jpeg"},
+{"id": 45, "cat": "पंजाबी डीस", "name": "काजु मटर मसाला - Kaju Matar Masala", "price": "RS 00", "desc": "Kaju Matar Masala", "tags": ["Veg"], "img": "img/kaju_metar_masala.jpeg"},
+{"id": 46, "cat": "पंजाबी डीस", "name": "व्हेज कढई - Veg Kadai", "price": "RS 00", "desc": "Veg Kadai", "tags": ["Veg"], "img": "img/veg_kadai.jpeg"},
+{"id": 47, "cat": "पंजाबी डीस", "name": "व्हेज कोल्हापुरी - Veg Kolhapuri", "price": "RS 00", "desc": "Veg Kolhapuri", "tags": ["Veg"], "img": "img/veg_kolhapuri.jpeg"},
+{"id": 48, "cat": "पंजाबी डीस", "name": "पनीर मसाला - Paneer Masala", "price": "RS 00", "desc": "Paneer Masala", "tags": ["Veg"], "img": "img/paneer_masala.jpeg"},
+{"id": 49, "cat": "पंजाबी डीस", "name": "काजु पनीर - Kaju Paneer", "price": "RS 00", "desc": "Kaju Paneer", "tags": ["Veg"], "img": "img/kaju_paneer.jpeg"},
+{"id": 50, "cat": "पंजाबी डीस", "name": "पनीर चिंगारी - Paneer Chingari", "price": "RS 00", "desc": "Paneer Chingari", "tags": ["Veg"], "img": "img/paneer_chingari.jpeg"},
+{"id": 51, "cat": "पंजाबी डीस", "name": "पालक पनीर - Palak Paneer", "price": "RS 00", "desc": "Palak Paneer", "tags": ["Veg"], "img": "img/palak_paneer.jpeg"},
+{"id": 52, "cat": "पंजाबी डीस", "name": "शाही पनीर - Shahi Paneer", "price": "RS 00", "desc": "Shahi Paneer", "tags": ["Veg"], "img": "img/shahi_paneer.jpeg"},
+{"id": 53, "cat": "पंजाबी डीस", "name": "पनीर कोसा - Paneer Kosa", "price": "RS 00", "desc": "Paneer Kosa", "tags": ["Veg"], "img": "img/paneer_kosa.jpeg"},
+{"id": 54, "cat": "पंजाबी डीस", "name": "दाल पनीर बटर - Dal Paneer Butter", "price": "RS 00", "desc": "Dal Paneer Butter", "tags": ["Veg"], "img": "img/dal_paneer_butter.jpeg"},
+{"id": 55, "cat": "रानमळा स्पेशल", "name": "व्हेज हांडी - Veg Handi", "price": "RS 00", "desc": "Veg Handi", "tags": ["Veg"], "img": "img/veg_handi.jpeg"},
+{"id": 56, "cat": "रानमळा स्पेशल", "name": "शेवगा हांडी - Shevga Handi", "price": "RS 00", "desc": "Shevga Handi", "tags": ["Veg"], "img": "img/shevga_handi.jpeg"},
+{"id": 57, "cat": "रोटी", "name": "बाजरी भाकर - Bajri Bhakar", "price": "RS 00", "desc": "Bajri Bhakar", "tags": ["Veg"], "img": "img/bajri_bhakar.jpeg"},
+{"id": 58, "cat": "रोटी", "name": "चपाती - Chapati", "price": "RS 00", "desc": "Chapati", "tags": ["Veg"], "img": "img/chapati.jpeg"},
+{"id": 59, "cat": "रोटी", "name": "तंदुर - Tandur", "price": "RS 00", "desc": "Tandur", "tags": ["Veg"], "img": "img/tandur.jpeg"},
+{"id": 60, "cat": "रोटी", "name": "तंदुर बटर नान - Tandur Butter Nan", "price": "RS 00", "desc": "Tandur Butter Nan", "tags": ["Veg"], "img": "img/tandur_butter_nan.jpeg"},
+{"id": 61, "cat": "रोटी", "name": "तंदुर प्लेन नान - Tandur Plain Nan", "price": "RS 00", "desc": "Tandur Plain Nan", "tags": ["Veg"], "img": "img/tandur_plain_nan.jpeg"},
+{"id": 62, "cat": "रोटी", "name": "तंदुर बटर कुलछा - Tandur Butter Kulcha", "price": "RS 00", "desc": "Tandur Butter Kulcha", "tags": ["Veg"], "img": "img/tandur_butter_kulcha.jpeg"},
+{"id": 63, "cat": "रोटी", "name": "तंदुर गारलिक नान - Tandur Garlic Nan", "price": "RS 00", "desc": "Tandur Garlic Nan", "tags": ["Veg"], "img": "img/tandur_garlic_nan.jpeg"},
+{"id": 64, "cat": "राईस", "name": "जीरा राईस - Jeera Rice", "price": "RS 00", "desc": "Jeera Rice", "tags": ["Veg"], "img": "img/jeera_rice.jpeg"},
+{"id": 65, "cat": "राईस", "name": "स्टीम राईस - Steam Rice", "price": "RS 00", "desc": "Steam Rice", "tags": ["Veg"], "img": "img/steam_rice.jpeg"},
+{"id": 66, "cat": "राईस", "name": "दाल खिचडी - Dal Khichdi", "price": "RS 00", "desc": "Dal Khichdi", "tags": ["Veg"], "img": "img/dal_khichdi.jpeg"},
+{"id": 67, "cat": "राईस", "name": "व्हेज बिर्याणी - Veg Biryani", "price": "RS 00", "desc": "Veg Biryani", "tags": ["Veg"], "img": "img/veg_biryani.jpeg"},
+{"id": 68, "cat": "राईस", "name": "ग्रीन पीस पुलाव - Green Peas Pulao", "price": "RS 00", "desc": "Green Peas Pulao", "tags": ["Veg"], "img": "img/green_peas_pulao.jpeg"},
+{"id": 69, "cat": "स्टार्टर", "name": "सोयाबिन रोस्ट - Soyabean Roast", "price": "RS 00", "desc": "Soyabean Roast", "tags": ["Veg"], "img": "img/soyabean_roast.jpeg"},
+{"id": 70, "cat": "स्टार्टर", "name": "पनीर टिका - Paneer Tikka", "price": "RS 00", "desc": "Paneer Tikka", "tags": ["Veg"], "img": "img/paneer_tikka.jpeg"},
+{"id": 71, "cat": "स्टार्टर", "name": "फींगर चिप्स - Finger Chips", "price": "RS 00", "desc": "Finger Chips", "tags": ["Veg"], "img": "img/finger_chips.jpeg"},
+{"id": 72, "cat": "स्टार्टर", "name": "पनीर चिली - Paneer Chilli", "price": "RS 00", "desc": "Paneer Chilli", "tags": ["Veg"], "img": "img/paneer_chilli.jpeg"},
+{"id": 73, "cat": "स्टार्टर", "name": "पनीर ६५ - Paneer 65", "price": "RS 00", "desc": "Paneer 65", "tags": ["Veg"], "img": "img/paneer_65.jpeg"},
+{"id": 74, "cat": "स्टार्टर", "name": "गोवी रोस्ट - Gobi Roast", "price": "RS 00", "desc": "Gobi Roast", "tags": ["Veg"], "img": "img/gobi_roast.jpeg"},
+{"id": 75, "cat": "स्टार्टर", "name": "पनीर रोस्ट मसाला - Paneer Roast Masala", "price": "RS 00", "desc": "Paneer Roast Masala", "tags": ["Veg"], "img": "img/paneer_roast_masala.jpeg"},
+{"id": 76, "cat": "स्टार्टर", "name": "गोवी मंच्युरियन - Gobi Manchurian", "price": "RS 00", "desc": "Gobi Manchurian", "tags": ["Veg"], "img": "img/gobi_manchurian.jpeg"},
+{"id": 77, "cat": "स्टार्टर", "name": "पनीर पकोडा - Paneer Pakoda", "price": "RS 00", "desc": "Paneer Pakoda", "tags": ["Veg"], "img": "img/paneer_pakoda.jpeg"},
+{"id": 78, "cat": "स्टार्टर", "name": "पनीर मंच्युरियन - Paneer Manchurian", "price": "RS 00", "desc": "Paneer Manchurian", "tags": ["Veg"], "img": "img/paneer_manchurian.jpeg"},
+
+
+
+
+{"id": 79, "cat": "बिरयानी", "name": "चिकन बिर्याणी - Chicken Biryani", "price": "RS 00", "desc": "Chicken Biryani", "tags": ["Non-Veg"], "img": "img/chicken_biryani.jpeg"},
+{"id": 80, "cat": "बिरयानी", "name": "मटन बिर्याणी - Mutton Biryani", "price": "RS 00", "desc": "Mutton Biryani", "tags": ["Non-Veg"], "img": "img/mutton_biryani.jpeg"},
+{"id": 81, "cat": "बिरयानी", "name": "अंडा बिर्याणी - Egg Biryani", "price": "RS 00", "desc": "Egg Biryani", "tags": ["Non-Veg"], "img": "img/egg_biryani.jpeg"},
+{"id": 82, "cat": "चिकन मेन्यु", "name": "चिकन मसाला - Chicken Masala", "price": "RS 00", "desc": "Chicken Masala", "tags": ["Non-Veg"], "img": "img/chicken_masala.jpeg"},
+{"id": 83, "cat": "चिकन मेन्यु", "name": "चिकन करी - Chicken Curry", "price": "RS 00", "desc": "Chicken Curry", "tags": ["Non-Veg"], "img": "img/chicken_curry.jpeg"},
+{"id": 84, "cat": "चिकन मेन्यु", "name": "चिकन ड्राय - Chicken Dry", "price": "RS 00", "desc": "Chicken Dry", "tags": ["Non-Veg"], "img": "img/chicken_dry.jpeg"},
+{"id": 85, "cat": "चिकन मेन्यु", "name": "चिकन रोस्ट - Chicken Roast", "price": "RS 00", "desc": "Chicken Roast", "tags": ["Non-Veg"], "img": "img/chicken_roast.jpeg"},
+{"id": 86, "cat": "चिकन मेन्यु", "name": "चिकन कंतकी - Chicken Kantaki", "price": "RS 00", "desc": "Chicken Kantaki", "tags": ["Non-Veg"], "img": "img/chicken_kantaki.jpeg"},
+{"id": 87, "cat": "चिकन मेन्यु", "name": "चिकन आळणी - Chicken Alni", "price": "RS 00", "desc": "Chicken Alni", "tags": ["Non-Veg"], "img": "img/chicken_alni.jpeg"},
+{"id": 88, "cat": "चिकन मेन्यु", "name": "चिकन खर्डा - Chicken Kharda", "price": "RS 00", "desc": "Chicken Kharda", "tags": ["Non-Veg"], "img": "img/chicken_kharda.jpeg"},
+{"id": 89, "cat": "चिकन मेन्यु", "name": "चिकन मेथी - Chicken Methi", "price": "RS 00", "desc": "Chicken Methi", "tags": ["Non-Veg"], "img": "img/chicken_methi.jpeg"},
+{"id": 90, "cat": "चिकन मेन्यु", "name": "चिकन मालवणी - Chicken Malvani", "price": "RS 00", "desc": "Chicken Malvani", "tags": ["Non-Veg"], "img": "img/chicken_malvani.jpeg"},
+{"id": 91, "cat": "चिकन मेन्यु", "name": "चिकन रान - Chicken Raan", "price": "RS 00", "desc": "Chicken Raan", "tags": ["Non-Veg"], "img": "img/chicken_raan.jpeg"},
+{"id": 92, "cat": "चिकन मेन्यु", "name": "चिकन तंदुर - Chicken Tandur", "price": "RS 00", "desc": "Chicken Tandur", "tags": ["Non-Veg"], "img": "img/chicken_tandur.jpeg"},
+{"id": 93, "cat": "चिकन मेन्यु", "name": "चिकन कोल्हापुरी - Chicken Kolhapuri", "price": "RS 00", "desc": "Chicken Kolhapuri", "tags": ["Non-Veg"], "img": "img/chicken_kolhapuri.jpeg"},
+{"id": 94, "cat": "चिकन मेन्यु", "name": "चिकन सुका - Chicken Sukka", "price": "RS 00", "desc": "Chicken Sukka", "tags": ["Non-Veg"], "img": "img/chicken_sukka.jpeg"},
+{"id": 95, "cat": "चिकन मेन्यु", "name": "चिकन ठेचा - Chicken Thecha", "price": "RS 00", "desc": "Chicken Thecha", "tags": ["Non-Veg"], "img": "img/chicken_thecha.jpeg"},
+{"id": 96, "cat": "मटन मेन्यु", "name": "मटन मसाला - Mutton Masala", "price": "RS 00", "desc": "Mutton Masala", "tags": ["Non-Veg"], "img": "img/mutton_masala.jpeg"},
+{"id": 97, "cat": "मटन मेन्यु", "name": "मटन करी - Mutton Curry", "price": "RS 00", "desc": "Mutton Curry", "tags": ["Non-Veg"], "img": "img/mutton_curry.jpeg"},
+{"id": 98, "cat": "मटन मेन्यु", "name": "मटन ड्राय - Mutton Dry", "price": "RS 00", "desc": "Mutton Dry", "tags": ["Non-Veg"], "img": "img/mutton_dry.jpeg"},
+{"id": 99, "cat": "मटन मेन्यु", "name": "मटन रोस्ट - Mutton Roast", "price": "RS 00", "desc": "Mutton Roast", "tags": ["Non-Veg"], "img": "img/mutton_roast.jpeg"},
+{"id": 100, "cat": "मटन मेन्यु", "name": "मटन उकड - Mutton Ukad", "price": "RS 00", "desc": "Mutton Ukad", "tags": ["Non-Veg"], "img": "img/mutton_ukad.jpeg"},
+{"id": 101, "cat": "मटन मेन्यु", "name": "मटन खर्डा - Mutton Kharda", "price": "RS 00", "desc": "Mutton Kharda", "tags": ["Non-Veg"], "img": "img/mutton_kharda.jpeg"},
+{"id": 102, "cat": "मटन मेन्यु", "name": "मटन मेथी - Mutton Methi", "price": "RS 00", "desc": "Mutton Methi", "tags": ["Non-Veg"], "img": "img/mutton_methi.jpeg"},
+{"id": 103, "cat": "मटन मेन्यु", "name": "मटन मालवणी - Mutton Malvani", "price": "RS 00", "desc": "Mutton Malvani", "tags": ["Non-Veg"], "img": "img/mutton_malvani.jpeg"},
+{"id": 104, "cat": "मटन मेन्यु", "name": "मटन कंतकी - Mutton Kantaki", "price": "RS 00", "desc": "Mutton Kantaki", "tags": ["Non-Veg"], "img": "img/mutton_kantaki.jpeg"},
+{"id": 105, "cat": "मटन मेन्यु", "name": "मटन कोल्हापुरी - Mutton Kolhapuri", "price": "RS 00", "desc": "Mutton Kolhapuri", "tags": ["Non-Veg"], "img": "img/mutton_kolhapuri.jpeg"},
+{"id": 106, "cat": "मटन मेन्यु", "name": "मटन घी रोस्ट - Mutton Ghee Roast", "price": "RS 00", "desc": "Mutton Ghee Roast", "tags": ["Non-Veg"], "img": "img/mutton_ghee_roast.jpeg"},
+{"id": 107, "cat": "मटन मेन्यु", "name": "मटन खडी मसाला - Mutton Khadi Masala", "price": "RS 00", "desc": "Mutton Khadi Masala", "tags": ["Non-Veg"], "img": "img/mutton_khadi_masala.jpeg"},
+{"id": 108, "cat": "मटन मेन्यु", "name": "मटन सुका - Mutton Sukka", "price": "RS 00", "desc": "Mutton Sukka", "tags": ["Non-Veg"], "img": "img/mutton_sukka.jpeg"},
+{"id": 109, "cat": "मटन मेन्यु", "name": "मटन ठेचा - Mutton Thecha", "price": "RS 00", "desc": "Mutton Thecha", "tags": ["Non-Veg"], "img": "img/mutton_thecha.jpeg"},
+{"id": 110, "cat": "मटन मेन्यु", "name": "मटन चॉप्स - Mutton Chops", "price": "RS 00", "desc": "Mutton Chops", "tags": ["Non-Veg"], "img": "img/mutton_chops.jpeg"},
+{"id": 111, "cat": "थाळी", "name": "स्पेशल मटन थाळी - Special Mutton Thali", "price": "RS 00", "desc": "Special Mutton Thali", "tags": ["Non-Veg"], "img": "img/special_mutton_thali.jpeg"},
+{"id": 112, "cat": "थाळी", "name": "स्पेशल चिकन थाळी - Special Chicken Thali", "price": "RS 00", "desc": "Special Chicken Thali", "tags": ["Non-Veg"], "img": "img/special_chicken_thali.jpeg"},
+{"id": 113, "cat": "थाळी", "name": "स्पेशल अंडा थाळी - Special Egg Thali", "price": "RS 00", "desc": "Special Egg Thali", "tags": ["Non-Veg"], "img": "img/special_egg_thali.jpeg"},
+{"id": 114, "cat": "थाळी", "name": "स्पेशल मच्छी थाळी - Special Fish Thali", "price": "RS 00", "desc": "Special Fish Thali", "tags": ["Non-Veg"], "img": "img/special_fish_thali.jpeg"},
+{"id": 115, "cat": "तंदुरी चिकन", "name": "तंदुरी चिकन - Tandoori Chicken", "price": "RS 00", "desc": "Tandoori Chicken", "tags": ["Non-Veg"], "img": "img/tandoori_chicken.jpeg"},
+{"id": 116, "cat": "तंदुरी चिकन", "name": "बटर चिकन तंदुरी - Butter Chicken Tandoori", "price": "RS 00", "desc": "Butter Chicken Tandoori", "tags": ["Non-Veg"], "img": "img/butter_chicken_tandoori.jpeg"},
+{"id": 117, "cat": "तंदुरी चिकन", "name": "चिकन तंगडी कबाब - Chicken Tangdi Kabab", "price": "RS 00", "desc": "Chicken Tangdi Kabab", "tags": ["Non-Veg"], "img": "img/chicken_tangdi_kabab.jpeg"},
+{"id": 118, "cat": "तंदुरी चिकन", "name": "चिकन पहाडी - Chicken Pahadi", "price": "RS 00", "desc": "Chicken Pahadi", "tags": ["Non-Veg"], "img": "img/chicken_pahadi.jpeg"},
+{"id": 119, "cat": "तंदुरी चिकन", "name": "चिकन राण - Chicken Raan", "price": "RS 00", "desc": "Chicken Raan", "tags": ["Non-Veg"], "img": "img/chicken_raan.jpeg"},
+{"id": 120, "cat": "तंदुरी चिकन", "name": "चिकन मंदी - Chicken Mandi", "price": "RS 00", "desc": "Chicken Mandi", "tags": ["Non-Veg"], "img": "img/chicken_mandi.jpeg"},
+{"id": 121, "cat": "तंदुरी चिकन", "name": "मटन मंदी - Mutton Mandi", "price": "RS 00", "desc": "Mutton Mandi", "tags": ["Non-Veg"], "img": "img/mutton_mandi.jpeg"},
+{"id": 122, "cat": "तंदुरी चिकन", "name": "चिकन दम मुर्गा - Chicken Dum Murga", "price": "RS 00", "desc": "Chicken Dum Murga", "tags": ["Non-Veg"], "img": "img/chicken_dum_murga.jpeg"},
+{"id": 123, "cat": "मच्छी", "name": "मच्छी मसाला - Fish Masala", "price": "RS 00", "desc": "Fish Masala", "tags": ["Non-Veg"], "img": "img/fish_masala.jpeg"},
+{"id": 124, "cat": "मच्छी", "name": "मच्छी करी - Fish Curry", "price": "RS 00", "desc": "Fish Curry", "tags": ["Non-Veg"], "img": "img/fish_curry.jpeg"},
+{"id": 125, "cat": "मच्छी", "name": "मच्छी रोस्ट - Fish Roast", "price": "RS 00", "desc": "Fish Roast", "tags": ["Non-Veg"], "img": "img/fish_roast.jpeg"},
+{"id": 126, "cat": "मच्छी", "name": "मच्छी ड्राय - Fish Dry", "price": "RS 00", "desc": "Fish Dry", "tags": ["Non-Veg"], "img": "img/fish_dry.jpeg"},
+{"id": 127, "cat": "मच्छी", "name": "मच्छी मालवणी - Fish Malvani", "price": "RS 00", "desc": "Fish Malvani", "tags": ["Non-Veg"], "img": "img/fish_malvani.jpeg"},
+{"id": 128, "cat": "मच्छी", "name": "मच्छी लेमन - Fish Lemon", "price": "RS 00", "desc": "Fish Lemon", "tags": ["Non-Veg"], "img": "img/fish_lemon.jpeg"},
+{"id": 129, "cat": "मच्छी", "name": "मच्छी रेवा-कडक - Fish Reva Kadak", "price": "RS 00", "desc": "Fish Reva Kadak", "tags": ["Non-Veg"], "img": "img/fish_reva_kadak.jpeg"},
+{"id": 130, "cat": "हंडी", "name": "स्पेशल चिकन हंडी - Special Chicken Handi", "price": "RS 00", "desc": "Special Chicken Handi", "tags": ["Non-Veg"], "img": "img/special_chicken_handi.jpeg"},
+{"id": 131, "cat": "हंडी", "name": "स्पेशल मटन हंडी - Special Mutton Handi", "price": "RS 00", "desc": "Special Mutton Handi", "tags": ["Non-Veg"], "img": "img/special_mutton_handi.jpeg"},
+{"id": 132, "cat": "हंडी", "name": "स्पेशल मच्छी हंडी - Special Fish Handi", "price": "RS 00", "desc": "Special Fish Handi", "tags": ["Non-Veg"], "img": "img/special_fish_handi.jpeg"},
+{"id": 133, "cat": "हंडी", "name": "चिकन हंडी मालवणी - Chicken Handi Malvani", "price": "RS 00", "desc": "Chicken Handi Malvani", "tags": ["Non-Veg"], "img": "img/chicken_handi_malvani.jpeg"},
+{"id": 134, "cat": "हंडी", "name": "मटन हंडी मालवणी - Mutton Handi Malvani", "price": "RS 00", "desc": "Mutton Handi Malvani", "tags": ["Non-Veg"], "img": "img/mutton_handi_malvani.jpeg"},
+{"id": 135, "cat": "हंडी", "name": "मच्छी हंडी मालवणी - Fish Handi Malvani", "price": "RS 00", "desc": "Fish Handi Malvani", "tags": ["Non-Veg"], "img": "img/fish_handi_malvani.jpeg"},
+{"id": 136, "cat": "रानमळा स्पेशल", "name": "कंदुरी मटन - Kanduri Mutton", "price": "RS 00", "desc": "Kanduri Mutton", "tags": ["Non-Veg"], "img": "img/kanduri_mutton.jpeg"},
+{"id": 137, "cat": "राईस", "name": "राईस - Rice", "price": "RS 00", "desc": "Rice", "tags": ["Veg"], "img": "img/rice.jpeg"},
+{"id": 138, "cat": "राईस", "name": "स्टीम राईस - Steam Rice", "price": "RS 00", "desc": "Steam Rice", "tags": ["Veg"], "img": "img/steam_rice.jpeg"},
+{"id": 139, "cat": "राईस", "name": "जीरा राईस - Jeera Rice", "price": "RS 00", "desc": "Jeera Rice", "tags": ["Veg"], "img": "img/jeera_rice.jpeg"},
+{"id": 140, "cat": "राईस", "name": "आळणी राईस - Alni Rice", "price": "RS 00", "desc": "Alni Rice", "tags": ["Non-Veg"], "img": "img/alni_rice.jpeg"},
+{"id": 141, "cat": "राईस", "name": "इंद्रायणी राईस - Indrayani Rice", "price": "RS 00", "desc": "Indrayani Rice", "tags": ["Veg"], "img": "img/indrayani_rice.jpeg"},
+{"id": 142, "cat": "रोटी", "name": "रोटी - Roti", "price": "RS 00", "desc": "Roti", "tags": ["Veg"], "img": "img/roti.jpeg"},
+{"id": 143, "cat": "रोटी", "name": "बटर रोटी - Butter Roti", "price": "RS 00", "desc": "Butter Roti", "tags": ["Veg"], "img": "img/butter_roti.jpeg"},
+{"id": 144, "cat": "रोटी", "name": "नान - Nan", "price": "RS 00", "desc": "Nan", "tags": ["Veg"], "img": "img/nan.jpeg"},
+{"id": 145, "cat": "रोटी", "name": "बटर नान - Butter Nan", "price": "RS 00", "desc": "Butter Nan", "tags": ["Veg"], "img": "img/butter_nan.jpeg"},
+{"id": 146, "cat": "रोटी", "name": "गारलीक नान - Garlic Nan", "price": "RS 00", "desc": "Garlic Nan", "tags": ["Veg"], "img": "img/garlic_nan.jpeg"},
+{"id": 147, "cat": "रोटी", "name": "गारलीक बटर नान - Garlic Butter Nan", "price": "RS 00", "desc": "Garlic Butter Nan", "tags": ["Veg"], "img": "img/garlic_butter_nan.jpeg"},
+{"id": 148, "cat": "रोटी", "name": "कुलछा - Kulcha", "price": "RS 00", "desc": "Kulcha", "tags": ["Veg"], "img": "img/kulcha.jpeg"},
+{"id": 149, "cat": "रोटी", "name": "बटर कुलछा - Butter Kulcha", "price": "RS 00", "desc": "Butter Kulcha", "tags": ["Veg"], "img": "img/butter_kulcha.jpeg"},
+{"id": 150, "cat": "रोटी", "name": "लच्छा पराठा - Lachha Paratha", "price": "RS 00", "desc": "Lachha Paratha", "tags": ["Veg"], "img": "img/lachha_paratha.jpeg"},
+{"id": 151, "cat": "रोटी", "name": "बटर लच्छा पराठा - Butter Lachha Paratha", "price": "RS 00", "desc": "Butter Lachha Paratha", "tags": ["Veg"], "img": "img/butter_lachha_paratha.jpeg"},
+{"id": 152, "cat": "रोटी", "name": "चपाती - Chapati", "price": "RS 00", "desc": "Chapati", "tags": ["Veg"], "img": "img/chapati.jpeg"},
+{"id": 153, "cat": "रोटी", "name": "बाजरी भाकर - Bajri Bhakar", "price": "RS 00", "desc": "Bajri Bhakar", "tags": ["Veg"], "img": "img/bajri_bhakar.jpeg"},
+
+
+
+
+
+];
+    // Cart functionality
+    let cart = [];
+    const cartButton = document.getElementById('cartButton');
+    const cartModal = document.getElementById('cartModal');
+    const closeCart = document.getElementById('closeCart');
+    const cartItems = document.getElementById('cartItems');
+    const cartEmpty = document.getElementById('cartEmpty');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const clearCart = document.getElementById('clearCart');
+    const whatsappOrder = document.getElementById('whatsappOrder');
+    const customerDetailsSummary = document.getElementById('customerDetailsSummary');
+
+    // Helper function to extract price number from price string
+    function extractPriceNumber(priceString) {
+      // Remove currency symbols and text, keep only numbers
+      const priceMatch = priceString.match(/(\d+)/);
+      return priceMatch ? parseInt(priceMatch[1]) : 0;
+    }
+
+    // Helper function to format price for display
+    function formatPrice(price) {
+      return `₹${price}`;
+    }
+
+    // Update customer details summary
+    function updateCustomerDetailsSummary() {
+      let summaryHTML = '';
+      let showSummary = false;
+      
+      const tableNumber = document.getElementById('tableNumber').value.trim();
+      
+      if (tableNumber) {
+        showSummary = true;
+        summaryHTML = `
+          <div class="summary-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12v12M15 12v12M5 12l-2 9h18l-2-9M5 12V8c0-1.105.895-2 2-2h10c1.105 0 2 .895 2 2v4"/>
+              <circle cx="12" cy="6" r="2"/>
+            </svg>
+            Table Information
+          </div>
+          <div class="summary-details">
+            <div><strong>Table Number:</strong> ${tableNumber}</div>
+          </div>
+        `;
+      }
+      
+      if (showSummary) {
+        customerDetailsSummary.innerHTML = summaryHTML;
+        customerDetailsSummary.classList.add('active');
+      } else {
+        customerDetailsSummary.classList.remove('active');
+      }
+    }
+
+    // Toggle cart modal
+    cartButton.addEventListener('click', () => {
+      cartModal.classList.add('open');
+      updateCustomerDetailsSummary();
+    });
+
+    closeCart.addEventListener('click', () => {
+      cartModal.classList.remove('open');
+    });
+
+    // Add to cart function with animation
+    function addToCart(item, button) {
+      const existingItem = cart.find(cartItem => cartItem.id === item.id);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          priceNumber: extractPriceNumber(item.price),
+          quantity: 1
+        });
+      }
+      
+      updateCart();
+      
+      // Animation effect
+      button.classList.add('adding');
+      button.innerHTML = 'Adding...';
+      
+      setTimeout(() => {
+        button.classList.remove('adding');
+        button.classList.add('added');
+        button.innerHTML = '✓ Added';
+        
+        setTimeout(() => {
+          button.classList.remove('added');
+          button.innerHTML = 'Add to Cart';
+        }, 1000);
+      }, 500);
+    }
+
+    // Remove from cart function
+    function removeFromCart(itemId) {
+      cart = cart.filter(item => item.id !== itemId);
+      updateCart();
+    }
+
+    // Update quantity function
+    function updateQuantity(itemId, change) {
+      const item = cart.find(item => item.id === itemId);
+      
+      if (item) {
+        item.quantity += change;
+        
+        if (item.quantity <= 0) {
+          removeFromCart(itemId);
+        } else {
+          updateCart();
+        }
+      }
+    }
+
+    // Update cart display
+    function updateCart() {
+      // Update cart count
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCount.textContent = totalItems;
+      
+      // Update cart items
+      if (cart.length === 0) {
+        cartEmpty.style.display = 'block';
+        cartItems.innerHTML = '';
+      } else {
+        cartEmpty.style.display = 'none';
+        
+        let itemsHTML = '';
+        let totalAmount = 0;
+        
+        cart.forEach(item => {
+          const itemTotal = item.priceNumber * item.quantity;
+          totalAmount += itemTotal;
+          
+          itemsHTML += `
+            <div class="cart-item">
+              <div class="item-info">
+                <div class="item-name">${item.name}</div>
+                <div class="item-price">${item.price}</div>
+              </div>
+              <div class="item-quantity">
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                <span class="quantity">${item.quantity}</span>
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                <button class="remove-item" onclick="removeFromCart(${item.id})">×</button>
+              </div>
+            </div>
+          `;
+        });
+        
+        cartItems.innerHTML = itemsHTML;
+        cartTotal.textContent = formatPrice(totalAmount);
+      }
+    }
+
+    // Clear cart
+    clearCart.addEventListener('click', () => {
+      cart = [];
+      updateCart();
+    });
+
+    // WhatsApp order function with customer details
+    whatsappOrder.addEventListener('click', () => {
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      
+      // Validate table number
+      const tableNumber = document.getElementById('tableNumber').value.trim();
+      
+      if (!tableNumber) {
+        alert('Please enter your table number');
+        return;
+      }
+      
+      let message = `Hello! I would like to place an order:\n\n`;
+      
+      // Add table information
+      message += `**Table Number:** ${tableNumber}\n\n`;
+      
+      message += `**Order Details:**\n`;
+      
+      cart.forEach(item => {
+        message += `• ${item.name} - ${item.quantity} x ${item.price}\n`;
+      });
+      
+      const totalAmount = cart.reduce((sum, item) => {
+        return sum + (item.priceNumber * item.quantity);
+      }, 0);
+      
+      message += `\n**Total Amount:** ₹${totalAmount}\n\n`;
+      message += `Thank you!`;
+      
+      // Encode the message for WhatsApp URL
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/919529924296?text=${encodedMessage}`;
+      
+      // Open WhatsApp in a new tab
+      window.open(whatsappURL, '_blank');
+      
+      // Close cart modal after order
+      setTimeout(() => {
+        cartModal.classList.remove('open');
+      }, 1000);
+    });
+
+    // Render menu items
+    function renderMenuItems(items) {
+      const menuGrid = document.getElementById('menuGrid');
+      
+      if (items.length === 0) {
+        menuGrid.innerHTML = '<p style="text-align:center;color:var(--muted);grid-column:1/-1;padding:40px 20px">No items found</p>';
+        return;
+      }
+      
+      menuGrid.innerHTML = items.map(item => `
+        <div class="card" data-cat="${item.cat}">
+          <div class="card-header">
+            <div class="thumb">
+              <img src="${item.img}" alt="${item.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDMpIi8+CjxwYXRoIGQ9Ik03MCA4MEgxMTBNODAgNzBWOTBNNjUgOTVIMTA1TTk1IDY1VjEwNU02NSA2NVYxMDVNNzUgNzVIOThNNzUgODVIOThNNzUgOTVIOThNNzUgMTA1SDk4TTY1IDc1SDcyTTY1IDg1SDcyTTY1IDk1SDcyTTY1IDEwNUg3Mk0xMDggNzVIMTE1TTEwOCA4NUgxMTVNMTA4IDk1SDExNU0xMDggMTA1SDExNSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+'">
+            </div>
+            <div class="card-info">
+              <h3 class="dish">${item.name}</h3>
+              <p class="desc">${item.desc}</p>
+              <div class="tags">
+                ${item.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="price">${item.price}</div>
+            <button class="btn-primary" onclick="addToCart(${JSON.stringify(item).replace(/"/g, '&quot;')}, this)">Add to Cart</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter menu items by category
+    function filterByCategory(category) {
+      if (category === 'all') {
+        renderMenuItems(data);
+      } else {
+        const filteredItems = data.filter(item => item.cat === category);
+        renderMenuItems(filteredItems);
+      }
+    }
+
+    // Search functionality
+    function searchItems(query) {
+      const filteredItems = data.filter(item => 
+        item.name.toLowerCase().includes(query.toLowerCase()) || 
+        item.desc.toLowerCase().includes(query.toLowerCase()) ||
+        item.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
+      );
+      renderMenuItems(filteredItems);
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render menu items
+      renderMenuItems(data);
+      
+      // Tab functionality
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          filterByCategory(tab.dataset.cat);
+        });
+      });
+      
+      // Search functionality
+      document.getElementById('search').addEventListener('input', (e) => {
+        searchItems(e.target.value);
+      });
+      
+      // Update details summary when table number changes
+      document.getElementById('tableNumber').addEventListener('input', updateCustomerDetailsSummary);
+    });
+
+    // Make functions available globally
+    window.addToCart = addToCart;
+    window.removeFromCart = removeFromCart;
+    window.updateQuantity = updateQuantity;
+  </script>
+</body>
+</html>
